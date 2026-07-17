@@ -56,11 +56,15 @@ async function main() {
     : DEFAULT_VOICE;
 
   const raw = await readFile(args.file, 'utf-8');
-  const narration = markdownToNarration(raw);
-  if (!narration) {
+  const bodyNarration = markdownToNarration(raw);
+  if (!bodyNarration) {
     console.error("Aucun texte exploitable après nettoyage Markdown/MDX -- fichier vide ?");
     process.exit(1);
   }
+  // Le titre (frontmatter, passé explicitement via --title) est lu une seule fois, en tête --
+  // jamais déduit du corps (le H1 du corps est retiré par markdownToNarration pour éviter la
+  // répétition). Cible spécifiquement "titre + contenu", pas la page entière.
+  const narration = `${args.title}. ${bodyNarration}`;
   const characters = narration.length;
 
   const { ok, remaining } = await checkBudget(REPO_ROOT, characters);

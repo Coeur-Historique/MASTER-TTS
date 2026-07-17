@@ -18,16 +18,35 @@ export function stripFrontmatter(raw) {
   return raw;
 }
 
+// Convention de redaction (a documenter formellement cote articles de blog, voir echange du
+// 17/07/2026) : tout ce qui suit ce marqueur HTML dans le corps du .mdx est ignore par la
+// narration -- sert a exclure les sections non destinees a etre lues a voix haute (appel aux
+// benevoles, liens de navigation, CTA), qui restent affichees normalement sur le site.
+const TTS_STOP_MARKER = /<!--\s*tts:stop\s*-->/i;
+
+export function truncateAtStopMarker(text) {
+  const match = text.match(TTS_STOP_MARKER);
+  return match ? text.slice(0, match.index) : text;
+}
+
+// Nettoie le corps de l'article pour la narration -- le TITRE (frontmatter, passe separement
+// par --title) n'est PAS repris ici : le H1 du corps est retire pour eviter de le lire deux fois.
+// Cible specifiquement "titre + contenu" (decision du 17/07/2026) : les elements structurels
+// purement visuels (lignes de separation ---, emoji) sont retires, jamais lus a voix haute.
 export function markdownToNarration(markdown) {
   let text = stripFrontmatter(markdown);
+  text = truncateAtStopMarker(text);
   text = text.replace(/```[\s\S]*?```/g, ' ');       // blocs de code
   text = text.replace(/`([^`]+)`/g, '$1');            // code inline
   text = text.replace(/!\[[^\]]*]\([^)]*\)/g, ' ');   // images
-  text = text.replace(/\[([^\]]+)]\([^)]*\)/g, '$1'); // liens -> texte du lien
-  text = text.replace(/<[^>]+>/g, ' ');                // balises HTML/JSX (composants MDX)
-  text = text.replace(/^#{1,6}\s*/gm, '');             // titres
+  text = text.replace(/\[([^\]]+)]\([^)]*\)/g, '$1'); // liens -> texte du lien (jamais l'URL)
+  text = text.replace(/<[^>]+>/g, ' ');                // balises HTML/JSX (composants MDX) restantes
+  text = text.replace(/^#\s+.*$/gm, '');               // H1 entier retire (deja porte par --title)
+  text = text.replace(/^#{2,6}\s*/gm, '');             // sous-titres : garde le texte, retire les #
+  text = text.replace(/^[ \t]*-{3,}[ \t]*$/gm, '');    // lignes de separation horizontale (---)
   text = text.replace(/[*_~]{1,3}/g, '');              // gras/italique/barre
   text = text.replace(/^>\s?/gm, '');                  // citations
+  text = text.replace(/[\u{1F1E6}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}‍]/gu, ''); // emoji
   text = text.replace(/[ \t]+/g, ' ');
   text = text.replace(/\n{3,}/g, '\n\n');
   return text.trim();

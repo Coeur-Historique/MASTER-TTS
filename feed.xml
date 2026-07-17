@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>Cœur Historique — Le Blog en Podcast</title>
+    <link>https://coeur-historique.be</link>
+    <description>Les articles du blog de l&apos;ASBL Cœur Historique, lus à voix haute.</description>
+    <language>fr-be</language>
+    <itunes:explicit>false</itunes:explicit>
+    <item>
+      <title>Témoignage : à Liège, un signalement pris en charge en quelques jours (Stade 1)</title>
+      <description>Un signalement reçu, une situation de Stade 1 confirmée, un dossier transmis au CPAS le jour même.</description>
+      <link>https://coeur-historique.be/fr/blog/temoignage-liege-stade-1-prise-en-charge-rapide</link>
+      <guid isPermaLink="false">019f71e4-4a5c-7d29-993a-524bf4c56192</guid>
+      <pubDate>Fri, 17 Jul 2026 21:03:51 GMT</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Coeur-Historique/MASTER-TTS/main/audio/019f71e4-4a5c-7d29-993a-524bf4c56192.mp3" length="534477" type="audio/mpeg" />
+      <itunes:duration></itunes:duration>
+    </item>
+    <item>
+      <title>Témoignage : à Liège, un signalement pris en charge en quelques jours (Stade 1)</title>
+      <description>Un signalement reçu, une situation de Stade 1 confirmée, un dossier transmis au CPAS le jour même.</description>
+      <link>https://coeur-historique.be/fr/blog/temoignage-liege-stade-1-prise-en-charge-rapide</link>
+      <guid isPermaLink="false">019f71d9-1a6d-7104-825b-ca7c9625e76d</guid>
+      <pubDate>Fri, 17 Jul 2026 20:51:21 GMT</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Coeur-Historique/MASTER-TTS/main/audio/019f71d9-1a6d-7104-825b-ca7c9625e76d.mp3" length="1080621" type="audio/mpeg" />
+      <itunes:duration></itunes:duration>
+    </item>
+  </channel>
+</rss>
