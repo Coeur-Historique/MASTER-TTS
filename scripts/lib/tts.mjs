@@ -11,15 +11,13 @@ import os from 'node:os';
 
 const SYNTHESIZE_URL = 'https://texttospeech.googleapis.com/v1/text:synthesize';
 
-// Decision (17/07/2026) : voix Studio, un seul locuteur (narration), voix FEMININE. Seules deux
-// voix Studio existent en fr-FR : fr-FR-Studio-A et fr-FR-Studio-D (confirme par recherche web,
-// page officielle des voix inaccessible en lecture directe -- 403). Leur ssmlGender respectif
-// n'a PAS pu etre confirme par la documentation : lancer IMPERATIVEMENT
-// `npm run list-voices -- --language fr-FR --type Studio` avant le premier vrai episode et
-// choisir celle marquee FEMALE -- corriger cette constante si ce n'est pas fr-FR-Studio-A.
+// Decision finale (17/07/2026, Laurent) : apres comparaison a l'oreille de 17 voix feminines
+// fr-FR (Studio + Chirp-HD + Chirp3-HD, toutes testees en conditions reelles sur un vrai
+// article), voix retenue = Chirp3-HD "Aoede". Genre confirme FEMALE via l'API reelle
+// (`npm run list-voices -- --language fr-FR --type Chirp`).
 export const DEFAULT_VOICE = {
   languageCode: 'fr-FR',
-  name: 'fr-FR-Studio-A', // A VERIFIER -- voir commentaire ci-dessus
+  name: 'fr-FR-Chirp3-HD-Aoede',
 };
 
 export async function synthesizeSegment(accessToken, projectId, text, voice = DEFAULT_VOICE) {

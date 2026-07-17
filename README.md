@@ -4,40 +4,28 @@ Pipeline de génération audio (Google Cloud Text-to-Speech) et de flux RSS podc
 articles de blog du groupe Cœur Historique. Décisions actées le 16/07/2026 (session Claude Code
 sur `Coeur-Historique/myselion4nonprofit`, voir `docs/tts/` sur ce dépôt) :
 
-- **Moteur** : Google Cloud TTS (projet `MASTER-TTS`), voix **Studio, un seul locuteur
-  (narration), voix féminine** (précisé le 17/07/2026), français d'abord. `edge-tts`
-  (testé le 09/07/2026) écarté — voix jugée robotique.
+- **Moteur** : Google Cloud TTS (projet `MASTER-TTS`), voix **`fr-FR-Chirp3-HD-Aoede`**
+  (un seul locuteur, féminine — décision finale du 17/07/2026, après comparaison à l'oreille
+  de 17 voix fr-FR réelles : Studio, Chirp-HD, Chirp3-HD). `edge-tts` (testé le 09/07/2026)
+  écarté en premier — voix jugée robotique.
 - **Plafond auto-imposé** : 1 000 000 caractères/mois, suivi dans `usage/<AAAA-MM>.json`.
 - **Stockage** : ce repo — `audio/<uuid-v7>.mp3` (l'UUID sert aussi de `<guid>` RSS).
 - **Diffusion** : flux `feed.xml` auto-hébergé, soumis **manuellement une seule fois** à
   Spotify for Creators / Apple Podcasts / Google Podcasts (pas d'API par épisode).
 
-## Avant le premier épisode réel — à faire
+## État — ce qui reste ouvert
 
-1. **Confirmer le genre de la voix Studio en français** : deux voix Studio existent en `fr-FR` —
-   `fr-FR-Studio-A` (valeur par défaut du script) et `fr-FR-Studio-D`. Leur `ssmlGender` respectif
-   n'a **pas pu être confirmé par la documentation** (page officielle Google inaccessible en
-   lecture directe le 17/07/2026, recherche web inconclusive) — seule l'API elle-même fait foi :
-   ```
-   GOOGLE_TTS_SA_KEY_B64=... npm run list-voices -- --language fr-FR --type Studio
-   ```
-   Choisir celle marquée `FEMALE` (décision actée : voix féminine) et ajuster `DEFAULT_VOICE`
-   dans `scripts/lib/tts.mjs` si ce n'est pas `fr-FR-Studio-A`. Détail : `docs/tts/1-contexte.md`
-   sur `myselion4nonprofit`.
-2. **Poser les secrets GitHub Actions sur CE repo** (Settings → Secrets and variables → Actions) :
-   - `GOOGLE_TTS_SA_KEY_B64` — la clé de compte de service (JSON encodé en base64 : télécharger
-     la clé JSON depuis Google Cloud Console, `base64 -w0 fichier.json` sous Linux, coller le
-     résultat comme valeur du secret — voir procédure complète dans `docs/tts/1-contexte.md` sur
-     `myselion4nonprofit`). Créée le 16/07/2026 mais son emplacement exact (posée ici ou
-     seulement sur `myselion4nonprofit`) n'a pas été reconfirmé dans cette session — à vérifier
-     avant le premier `workflow_dispatch`.
-   - `ARTICLE_SOURCE_TOKEN` — un PAT fine-grained en lecture seule (scope `Contents`), limité au
-     repo `Coeur-Historique/myselion4nonprofit`, pour que le workflow puisse aller lire le
-     fichier `.mdx` de l'article (le `GITHUB_TOKEN` par défaut n'a accès qu'à ce repo-ci).
-3. **Vérifier la limite réelle de caractères par requête** pour une voix Studio : le script
-   découpe le texte en segments de 900 caractères (`MAX_CHUNK_CHARS`, `scripts/lib/text.mjs`),
-   valeur prudente jamais confirmée avec ce compte — si le premier appel réel renvoie une erreur
-   400, ajuster cette constante.
+- `GOOGLE_TTS_SA_KEY_B64` posé sur CE repo par Laurent le 17/07/2026 (confirmé fonctionnel,
+  17 synthèses réelles réussies). Son ancienne copie sur `myselion4nonprofit` (créée le
+  16/07/2026, avant que ce repo n'existe) n'est plus utilisée par aucun workflow — orpheline,
+  à supprimer là-bas si elle y traîne encore.
+- `ARTICLE_SOURCE_TOKEN` — un PAT fine-grained en lecture seule (scope `Contents`), limité au
+  repo `Coeur-Historique/myselion4nonprofit`, **pas encore créé** — nécessaire uniquement pour
+  déclencher `generate-episode.yml` via `workflow_dispatch` (les tests réels à ce jour sont
+  passés par une exécution locale directe, pas par ce workflow).
+- Limite de caractères par requête pour Chirp3-HD : jamais atteinte en pratique (segments de
+  900 caractères, `MAX_CHUNK_CHARS` dans `scripts/lib/text.mjs`) — aucune erreur 400 rencontrée
+  sur les 17 tests réels du 17/07/2026, mais la vraie limite officielle reste non confirmée.
 
 ## Utilisation
 
@@ -48,7 +36,7 @@ node scripts/generate-episode.mjs \
   --article-url https://coeur-historique.be/fr/blog/mon-article \
   --site-url https://coeur-historique.be \
   --description "résumé court (optionnel)" \
-  --voice fr-FR-Studio-A
+  --voice fr-FR-Chirp3-HD-Aoede
 ```
 
 Nécessite `GOOGLE_TTS_SA_KEY_B64` dans l'environnement et `ffmpeg` installé. Génère
