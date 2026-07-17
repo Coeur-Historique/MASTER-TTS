@@ -1,0 +1,35 @@
+name: Lister les voix Google Cloud TTS
+
+# Utilitaire de verification (workflow_dispatch uniquement) -- confirme en conditions reelles
+# le ssmlGender exact des voix Studio disponibles pour une langue donnee, avant de figer
+# DEFAULT_VOICE dans scripts/lib/tts.mjs. N'a besoin que de GOOGLE_TTS_SA_KEY_B64 (lecture seule,
+# API voices.list gratuite) -- pas de ARTICLE_SOURCE_TOKEN.
+
+on:
+  workflow_dispatch:
+    inputs:
+      language:
+        description: "Code langue (ex. fr-FR)"
+        required: false
+        default: "fr-FR"
+      type:
+        description: "Filtre sur le nom de la voix (ex. Studio)"
+        required: false
+        default: "Studio"
+
+permissions:
+  contents: read
+
+jobs:
+  list-voices:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Lister les voix
+        env:
+          GOOGLE_TTS_SA_KEY_B64: ${{ secrets.GOOGLE_TTS_SA_KEY_B64 }}
+        run: |
+          node scripts/list-voices.mjs --language "${{ inputs.language }}" --type "${{ inputs.type }}"
