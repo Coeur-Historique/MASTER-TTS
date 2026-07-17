@@ -19,10 +19,14 @@ export function stripFrontmatter(raw) {
 }
 
 // Convention de redaction (a documenter formellement cote articles de blog, voir echange du
-// 17/07/2026) : tout ce qui suit ce marqueur HTML dans le corps du .mdx est ignore par la
-// narration -- sert a exclure les sections non destinees a etre lues a voix haute (appel aux
-// benevoles, liens de navigation, CTA), qui restent affichees normalement sur le site.
-const TTS_STOP_MARKER = /<!--\s*tts:stop\s*-->/i;
+// 17/07/2026) : tout ce qui suit ce marqueur dans le corps du .mdx est ignore par la narration
+// -- sert a exclure les sections non destinees a etre lues a voix haute (appel aux benevoles,
+// liens de navigation, CTA), qui restent affichees normalement sur le site.
+// IMPORTANT : syntaxe JSX {/* ... */}, PAS un commentaire HTML <!-- ... -->. Constate le
+// 17/07/2026 en verifiant le rendu local avant deploiement : MDX interprete <...> comme du JSX
+// et `<!-- tts:stop -->` casse la compilation (MDXError "Unexpected character `!`"). Un
+// commentaire HTML classique reste syntaxiquement invalide en corps de fichier .mdx.
+const TTS_STOP_MARKER = /\{\/\*\s*tts:stop\s*\*\/\}/i;
 
 export function truncateAtStopMarker(text) {
   const match = text.match(TTS_STOP_MARKER);
