@@ -11,13 +11,15 @@ import os from 'node:os';
 
 const SYNTHESIZE_URL = 'https://texttospeech.googleapis.com/v1/text:synthesize';
 
-// Nom de voix a confirmer contre `npm run list-voices -- --language fr-FR` avant le premier
-// vrai episode : les voix "Studio" de Google Cloud ne sont disponibles que pour un sous-ensemble
-// de locales/couples voix, et leur nom exact (ex. fr-FR-Studio-A) n'a jamais ete verifie en
-// conditions reelles avec ce compte de service au moment de l'ecriture de ce script.
+// Decision (17/07/2026) : voix Studio, un seul locuteur (narration), voix FEMININE. Seules deux
+// voix Studio existent en fr-FR : fr-FR-Studio-A et fr-FR-Studio-D (confirme par recherche web,
+// page officielle des voix inaccessible en lecture directe -- 403). Leur ssmlGender respectif
+// n'a PAS pu etre confirme par la documentation : lancer IMPERATIVEMENT
+// `npm run list-voices -- --language fr-FR --type Studio` avant le premier vrai episode et
+// choisir celle marquee FEMALE -- corriger cette constante si ce n'est pas fr-FR-Studio-A.
 export const DEFAULT_VOICE = {
   languageCode: 'fr-FR',
-  name: 'fr-FR-Studio-A',
+  name: 'fr-FR-Studio-A', // A VERIFIER -- voir commentaire ci-dessus
 };
 
 export async function synthesizeSegment(accessToken, projectId, text, voice = DEFAULT_VOICE) {

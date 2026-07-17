@@ -4,8 +4,9 @@ Pipeline de génération audio (Google Cloud Text-to-Speech) et de flux RSS podc
 articles de blog du groupe Cœur Historique. Décisions actées le 16/07/2026 (session Claude Code
 sur `Coeur-Historique/myselion4nonprofit`, voir `docs/tts/` sur ce dépôt) :
 
-- **Moteur** : Google Cloud TTS (projet `MASTER-TTS`), voix **Studio** (narration, un seul
-  locuteur), français d'abord. `edge-tts` (testé le 09/07/2026) écarté — voix jugée robotique.
+- **Moteur** : Google Cloud TTS (projet `MASTER-TTS`), voix **Studio, un seul locuteur
+  (narration), voix féminine** (précisé le 17/07/2026), français d'abord. `edge-tts`
+  (testé le 09/07/2026) écarté — voix jugée robotique.
 - **Plafond auto-imposé** : 1 000 000 caractères/mois, suivi dans `usage/<AAAA-MM>.json`.
 - **Stockage** : ce repo — `audio/<uuid-v7>.mp3` (l'UUID sert aussi de `<guid>` RSS).
 - **Diffusion** : flux `feed.xml` auto-hébergé, soumis **manuellement une seule fois** à
@@ -13,16 +14,23 @@ sur `Coeur-Historique/myselion4nonprofit`, voir `docs/tts/` sur ce dépôt) :
 
 ## Avant le premier épisode réel — à faire
 
-1. **Confirmer le nom de la voix Studio en français** : `fr-FR-Studio-A` (valeur par défaut du
-   script) n'a **jamais été vérifié** en conditions réelles avec ce compte de service. Lancer :
+1. **Confirmer le genre de la voix Studio en français** : deux voix Studio existent en `fr-FR` —
+   `fr-FR-Studio-A` (valeur par défaut du script) et `fr-FR-Studio-D`. Leur `ssmlGender` respectif
+   n'a **pas pu être confirmé par la documentation** (page officielle Google inaccessible en
+   lecture directe le 17/07/2026, recherche web inconclusive) — seule l'API elle-même fait foi :
    ```
    GOOGLE_TTS_SA_KEY_B64=... npm run list-voices -- --language fr-FR --type Studio
    ```
-   et ajuster `DEFAULT_VOICE` dans `scripts/lib/tts.mjs` si besoin.
+   Choisir celle marquée `FEMALE` (décision actée : voix féminine) et ajuster `DEFAULT_VOICE`
+   dans `scripts/lib/tts.mjs` si ce n'est pas `fr-FR-Studio-A`. Détail : `docs/tts/1-contexte.md`
+   sur `myselion4nonprofit`.
 2. **Poser les secrets GitHub Actions sur CE repo** (Settings → Secrets and variables → Actions) :
-   - `GOOGLE_TTS_SA_KEY_B64` — la clé de compte de service (JSON encodé en base64), déjà créée le
-     16/07/2026 mais dont l'emplacement exact (posée ici ou seulement sur myselion4nonprofit) n'a
-     pas été reconfirmé dans cette session — à vérifier avant le premier `workflow_dispatch`.
+   - `GOOGLE_TTS_SA_KEY_B64` — la clé de compte de service (JSON encodé en base64 : télécharger
+     la clé JSON depuis Google Cloud Console, `base64 -w0 fichier.json` sous Linux, coller le
+     résultat comme valeur du secret — voir procédure complète dans `docs/tts/1-contexte.md` sur
+     `myselion4nonprofit`). Créée le 16/07/2026 mais son emplacement exact (posée ici ou
+     seulement sur `myselion4nonprofit`) n'a pas été reconfirmé dans cette session — à vérifier
+     avant le premier `workflow_dispatch`.
    - `ARTICLE_SOURCE_TOKEN` — un PAT fine-grained en lecture seule (scope `Contents`), limité au
      repo `Coeur-Historique/myselion4nonprofit`, pour que le workflow puisse aller lire le
      fichier `.mdx` de l'article (le `GITHUB_TOKEN` par défaut n'a accès qu'à ce repo-ci).
