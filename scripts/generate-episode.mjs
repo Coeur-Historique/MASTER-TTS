@@ -102,7 +102,11 @@ async function main() {
     title: args.title,
     description: args.description || '',
     articleUrl: args['article-url'],
-    audioUrl: `https://raw.githubusercontent.com/Coeur-Historique/MASTER-TTS/main/audio/${uuid}.mp3`,
+    // jsDelivr, pas raw.githubusercontent.com : ce dernier renvoie systematiquement
+    // Content-Disposition: attachment (verifie le 17/07/2026), forcant le telechargement au
+    // lieu de la lecture inline -- casse un <audio controls>/lien "Ecouter". jsDelivr sert le
+    // contenu d'un repo GitHub public sans ce header.
+    audioUrl: `https://cdn.jsdelivr.net/gh/Coeur-Historique/MASTER-TTS@main/audio/${uuid}.mp3`,
     audioBytes,
     publishedAt: new Date().toISOString(),
     durationSeconds: null, // ffprobe non installé par défaut -- à calculer si besoin réel
