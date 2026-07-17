@@ -1,5 +1,35 @@
 [
   {
+    "uuid": "019f7250-b4d0-75db-8fc1-5b516acd3b8a",
+    "title": "Erfahrungsbericht: In Lüttich wird eine Meldung innerhalb weniger Tage bearbeitet (Stufe 1)",
+    "description": "Eine eingegangene Meldung, eine bestätigte Situation der Stufe 1, ein noch am selben Tag an das ÖSHZ weitergeleiteter Fall: der anonymisierte Bericht über einen Einsatz, der in der Provinz Lüttich beginnt.",
+    "articleUrl": "https://coeur-historique.be/de/blog/temoignage-liege-stade-1-prise-en-charge-rapide",
+    "audioUrl": "https://cdn.jsdelivr.net/gh/Coeur-Historique/MASTER-TTS@main/audio/019f7250-b4d0-75db-8fc1-5b516acd3b8a.mp3",
+    "audioBytes": 468429,
+    "publishedAt": "2026-07-17T23:01:59.854Z",
+    "durationSeconds": null
+  },
+  {
+    "uuid": "019f7250-57b6-7acf-9156-4d172e0b9def",
+    "title": "Getuigenis: in Luik wordt een melding binnen enkele dagen opgepakt (Stadium 1)",
+    "description": "Een melding ontvangen, een Stadium 1-situatie bevestigd, een dossier nog dezelfde dag doorgestuurd naar het OCMW: het geanonimiseerde verhaal van een interventie die van start gaat in de provincie Luik.",
+    "articleUrl": "https://coeur-historique.be/nl/blog/temoignage-liege-stade-1-prise-en-charge-rapide",
+    "audioUrl": "https://cdn.jsdelivr.net/gh/Coeur-Historique/MASTER-TTS@main/audio/019f7250-57b6-7acf-9156-4d172e0b9def.mp3",
+    "audioBytes": 441165,
+    "publishedAt": "2026-07-17T23:01:35.960Z",
+    "durationSeconds": null
+  },
+  {
+    "uuid": "019f724f-ed6e-785e-8ac0-e9f41d2dfed0",
+    "title": "Testimonial: in Liège, a report handled within days (Stage 1)",
+    "description": "A report received, a Stage 1 situation confirmed, a case forwarded to the CPAS the same day: the anonymised account of an intervention getting under way in the Liège province.",
+    "articleUrl": "https://coeur-historique.be/en/blog/temoignage-liege-stade-1-prise-en-charge-rapide",
+    "audioUrl": "https://cdn.jsdelivr.net/gh/Coeur-Historique/MASTER-TTS@main/audio/019f724f-ed6e-785e-8ac0-e9f41d2dfed0.mp3",
+    "audioBytes": 417837,
+    "publishedAt": "2026-07-17T23:01:19.110Z",
+    "durationSeconds": null
+  },
+  {
     "uuid": "019f7216-74a1-7852-a2c0-d45593357b3b",
     "title": "Témoignage : à Liège, un signalement pris en charge en quelques jours (Stade 1)",
     "description": "Un signalement reçu, une situation de Stade 1 confirmée, un dossier transmis au CPAS le jour même : le récit anonymisé d'une intervention qui démarre en province de Liège.",

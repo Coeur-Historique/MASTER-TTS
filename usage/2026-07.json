@@ -1,12 +1,30 @@
 {
   "month": "2026-07",
-  "totalCharacters": 1862,
+  "totalCharacters": 7316,
   "episodes": [
     {
       "uuid": "019f7216-74a1-7852-a2c0-d45593357b3b",
       "title": "Témoignage : à Liège, un signalement pris en charge en quelques jours (Stade 1)",
       "characters": 1862,
       "generatedAt": "2026-07-17T21:58:30.610Z"
+    },
+    {
+      "uuid": "019f724f-ed6e-785e-8ac0-e9f41d2dfed0",
+      "title": "Testimonial: in Liège, a report handled within days (Stage 1)",
+      "characters": 1680,
+      "generatedAt": "2026-07-17T23:01:19.107Z"
+    },
+    {
+      "uuid": "019f7250-57b6-7acf-9156-4d172e0b9def",
+      "title": "Getuigenis: in Luik wordt een melding binnen enkele dagen opgepakt (Stadium 1)",
+      "characters": 1835,
+      "generatedAt": "2026-07-17T23:01:35.959Z"
+    },
+    {
+      "uuid": "019f7250-b4d0-75db-8fc1-5b516acd3b8a",
+      "title": "Erfahrungsbericht: In Lüttich wird eine Meldung innerhalb weniger Tage bearbeitet (Stufe 1)",
+      "characters": 1939,
+      "generatedAt": "2026-07-17T23:01:59.851Z"
     }
   ]
 }
