@@ -1,0 +1,89 @@
+name: Générer un épisode audio (Google Cloud TTS)
+
+# Declenchement manuel uniquement -- pas d'automatisation tant que le pipeline n'a pas ete
+# valide sur au moins un vrai article (voir README.md). Le secret GOOGLE_TTS_SA_KEY_B64 doit
+# etre pose sur CE repo (Settings -> Secrets and variables -> Actions), pas seulement sur
+# myselion4nonprofit.
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: "Titre de l'article"
+        required: true
+      article_url:
+        description: "URL publique de l'article (lien RSS)"
+        required: true
+      site_url:
+        description: "URL du site (racine du flux RSS)"
+        required: true
+        default: "https://coeur-historique.be"
+      article_repo:
+        description: "Repo GitHub contenant le fichier de l'article (owner/repo)"
+        required: true
+        default: "Coeur-Historique/myselion4nonprofit"
+      article_path:
+        description: "Chemin du fichier .mdx dans article_repo (ex. src/content/blog/mon-article.fr.mdx)"
+        required: true
+      description:
+        description: "Résumé court (optionnel, pour le flux RSS)"
+        required: false
+      voice:
+        description: "Nom de la voix Google Cloud TTS (confirmer avec npm run list-voices)"
+        required: false
+        default: "fr-FR-Studio-A"
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Installer ffmpeg
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version
+
+      - name: Récupérer le fichier de l'article depuis le repo source
+        # Le GITHUB_TOKEN par défaut n'a accès qu'à CE repo (MASTER-TTS) -- myselion4nonprofit
+        # étant un repo distinct (et privé), il faut un token avec accès en lecture dessus.
+        # Secret à créer sur MASTER-TTS : ARTICLE_SOURCE_TOKEN (PAT fine-grained, lecture seule,
+        # scope Contents, limité au repo myselion4nonprofit).
+        env:
+          GH_TOKEN: ${{ secrets.ARTICLE_SOURCE_TOKEN }}
+        run: |
+          mkdir -p /tmp/article
+          curl -sSL \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github.raw" \
+            "https://api.github.com/repos/${{ inputs.article_repo }}/contents/${{ inputs.article_path }}" \
+            -o /tmp/article/source.mdx
+          test -s /tmp/article/source.mdx || (echo "Fichier article vide ou introuvable" && exit 1)
+
+      - name: Générer l'épisode
+        env:
+          GOOGLE_TTS_SA_KEY_B64: ${{ secrets.GOOGLE_TTS_SA_KEY_B64 }}
+        run: |
+          node scripts/generate-episode.mjs \
+            --title "${{ inputs.title }}" \
+            --file /tmp/article/source.mdx \
+            --article-url "${{ inputs.article_url }}" \
+            --site-url "${{ inputs.site_url }}" \
+            --description "${{ inputs.description }}" \
+            --voice "${{ inputs.voice }}"
+
+      - name: Committer l'audio et le flux RSS mis à jour
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions (MASTER-TTS)"
+          git add audio/ feed.xml feed-episodes.json usage/
+          git commit -m "feat: nouvel épisode — ${{ inputs.title }}"
+          git push

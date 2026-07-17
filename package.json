@@ -1,0 +1,14 @@
+{
+  "name": "master-tts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Pipeline de génération audio (Google Cloud TTS) et de flux RSS podcast pour les articles de blog du groupe Cœur Historique.",
+  "scripts": {
+    "generate-episode": "node scripts/generate-episode.mjs",
+    "list-voices": "node scripts/list-voices.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
