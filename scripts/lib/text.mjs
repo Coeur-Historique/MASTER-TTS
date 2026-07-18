@@ -45,6 +45,17 @@ export function markdownToNarration(markdown) {
   text = text.replace(/!\[[^\]]*]\([^)]*\)/g, ' ');   // images
   text = text.replace(/\[([^\]]+)]\([^)]*\)/g, '$1'); // liens -> texte du lien (jamais l'URL)
   text = text.replace(/<[^>]+>/g, ' ');                // balises HTML/JSX (composants MDX) restantes
+  // Tableaux Markdown : sans ce traitement, une ligne "| cellule | cellule | cellule |" n'a
+  // aucune ponctuation de fin de phrase -- chunkText() la laisse alors fusionnee avec le
+  // paragraphe voisin en une seule "phrase" gigantesque, que Chirp3-HD refuse (400,
+  // "sentences that are too long"), meme sous la limite globale MAX_CHUNK_CHARS. Constate le
+  // 18/07/2026 sur un tableau recapitulatif en fin d'article. Fix : ligne de separation
+  // (|:---|:---|) retiree, chaque ligne de donnees convertie en phrases ponctuees.
+  text = text.replace(/^\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)+\|?$/gm, '');
+  text = text.replace(/^\|(.+)\|$/gm, (_, row) => {
+    const cells = row.split('|').map((c) => c.trim()).filter(Boolean);
+    return cells.length ? `${cells.join('. ')}.` : '';
+  });
   text = text.replace(/^#\s+.*$/gm, '');               // H1 entier retire (deja porte par --title)
   text = text.replace(/^#{2,6}\s*/gm, '');             // sous-titres : garde le texte, retire les #
   text = text.replace(/^[ \t]*-{3,}[ \t]*$/gm, '');    // lignes de separation horizontale (---)
