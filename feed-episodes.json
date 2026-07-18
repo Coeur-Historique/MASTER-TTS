@@ -1,5 +1,45 @@
 [
   {
+    "uuid": "019f7557-2e30-7d8c-a6de-0e2faed79b3d",
+    "title": "Die Ferme de la Planche in Gouvy: ein Familienspaziergang barfuß, zurück zur Natur",
+    "description": "Drei Schwierigkeitsstufen, ein barfüßiger Sinnespfad durch Erde, Stein, Stroh, Sand und Wasser: Cœur Historique nimmt Sie mit zur Ferme de la Planche in Gouvy.",
+    "articleUrl": "https://coeur-historique.be/de/blog/ferme-planche-sentier-pieds-nus-gouvy",
+    "audioUrl": "https://cdn.jsdelivr.net/gh/Coeur-Historique/MASTER-TTS@main/audio/019f7557-2e30-7d8c-a6de-0e2faed79b3d.mp3",
+    "audioBytes": 554637,
+    "publishedAt": "2026-07-18T13:07:55.873Z",
+    "durationSeconds": null
+  },
+  {
+    "uuid": "019f7556-db53-7a9a-bd72-ccc6ad98bee3",
+    "title": "De Ferme de la Planche in Gouvy: een gezinswandeling om terug verbinding te maken met de natuur, blootsvoets",
+    "description": "Drie moeilijkheidsgraden, een blootsvoetse zintuiglijke tocht door aarde, steen, stro, zand en water: Cœur Historique neemt je mee naar de Ferme de la Planche, in Gouvy.",
+    "articleUrl": "https://coeur-historique.be/nl/blog/ferme-planche-sentier-pieds-nus-gouvy",
+    "audioUrl": "https://cdn.jsdelivr.net/gh/Coeur-Historique/MASTER-TTS@main/audio/019f7556-db53-7a9a-bd72-ccc6ad98bee3.mp3",
+    "audioBytes": 549453,
+    "publishedAt": "2026-07-18T13:07:34.735Z",
+    "durationSeconds": null
+  },
+  {
+    "uuid": "019f7556-887d-7eb1-bc99-3835a9150225",
+    "title": "The Ferme de la Planche in Gouvy: a family walk to reconnect with nature, barefoot",
+    "description": "Three difficulty levels, a barefoot sensory trail through earth, stone, straw, sand and water: Cœur Historique takes you to the Ferme de la Planche, in Gouvy.",
+    "articleUrl": "https://coeur-historique.be/en/blog/ferme-planche-sentier-pieds-nus-gouvy",
+    "audioUrl": "https://cdn.jsdelivr.net/gh/Coeur-Historique/MASTER-TTS@main/audio/019f7556-887d-7eb1-bc99-3835a9150225.mp3",
+    "audioBytes": 524781,
+    "publishedAt": "2026-07-18T13:07:13.322Z",
+    "durationSeconds": null
+  },
+  {
+    "uuid": "019f7556-17b1-73d2-b319-c4ee40286080",
+    "title": "La Ferme de la Planche à Gouvy : une balade en famille pour se reconnecter à la nature, pieds nus",
+    "description": "Trois niveaux de difficulté, un sentier sensoriel pieds nus dans la terre, la pierre, la paille, le sable et l'eau : Cœur Historique vous emmène à la Ferme de la Planche, à Gouvy.",
+    "articleUrl": "https://coeur-historique.be/fr/blog/ferme-planche-sentier-pieds-nus-gouvy",
+    "audioUrl": "https://cdn.jsdelivr.net/gh/Coeur-Historique/MASTER-TTS@main/audio/019f7556-17b1-73d2-b319-c4ee40286080.mp3",
+    "audioBytes": 477933,
+    "publishedAt": "2026-07-18T13:06:53.002Z",
+    "durationSeconds": null
+  },
+  {
     "uuid": "019f7498-143c-7566-8aea-702f7c6158e7",
     "title": "Die Sortierung wertvoller Verwaltungsdokumente bei einer großen Entrümpelung",
     "description": "Wie man das Wesentliche unter Tonnen von Abfall wiederfindet. Erfahren Sie mehr über das sorgfältige Sortierprotokoll der gemeinnützigen Organisation zum Schutz der Rechte der Begünstigten.",

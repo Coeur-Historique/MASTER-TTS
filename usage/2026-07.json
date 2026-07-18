@@ -1,6 +1,6 @@
 {
   "month": "2026-07",
-  "totalCharacters": 214358,
+  "totalCharacters": 222830,
   "episodes": [
     {
       "uuid": "019f7216-74a1-7852-a2c0-d45593357b3b",
@@ -409,6 +409,30 @@
       "title": "Die Sortierung wertvoller Verwaltungsdokumente bei einer großen Entrümpelung",
       "characters": 3745,
       "generatedAt": "2026-07-18T09:39:11.804Z"
+    },
+    {
+      "uuid": "019f7556-17b1-73d2-b319-c4ee40286080",
+      "title": "La Ferme de la Planche à Gouvy : une balade en famille pour se reconnecter à la nature, pieds nus",
+      "characters": 2197,
+      "generatedAt": "2026-07-18T13:06:53.001Z"
+    },
+    {
+      "uuid": "019f7556-887d-7eb1-bc99-3835a9150225",
+      "title": "The Ferme de la Planche in Gouvy: a family walk to reconnect with nature, barefoot",
+      "characters": 1995,
+      "generatedAt": "2026-07-18T13:07:13.321Z"
+    },
+    {
+      "uuid": "019f7556-db53-7a9a-bd72-ccc6ad98bee3",
+      "title": "De Ferme de la Planche in Gouvy: een gezinswandeling om terug verbinding te maken met de natuur, blootsvoets",
+      "characters": 2125,
+      "generatedAt": "2026-07-18T13:07:34.732Z"
+    },
+    {
+      "uuid": "019f7557-2e30-7d8c-a6de-0e2faed79b3d",
+      "title": "Die Ferme de la Planche in Gouvy: ein Familienspaziergang barfuß, zurück zur Natur",
+      "characters": 2155,
+      "generatedAt": "2026-07-18T13:07:55.870Z"
     }
   ]
 }
