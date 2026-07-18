@@ -40,6 +40,10 @@ export function truncateAtStopMarker(text) {
 export function markdownToNarration(markdown) {
   let text = stripFrontmatter(markdown);
   text = truncateAtStopMarker(text);
+  // Imports/exports MDX (ex. `import { Image } from 'astro:assets';` pour une galerie photo en
+  // JSX) : code source, jamais du texte a lire -- retire avant tout le reste.
+  text = text.replace(/^import\s.+;\s*$/gm, '');
+  text = text.replace(/^export\s.+;\s*$/gm, '');
   text = text.replace(/```[\s\S]*?```/g, ' ');       // blocs de code
   text = text.replace(/`([^`]+)`/g, '$1');            // code inline
   text = text.replace(/!\[[^\]]*]\([^)]*\)/g, ' ');   // images
