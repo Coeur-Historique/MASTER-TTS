@@ -25,6 +25,9 @@ on:
       article_path:
         description: "Chemin du fichier .mdx dans article_repo (ex. src/content/blog/mon-article.fr.mdx)"
         required: true
+      article_ref:
+        description: "Branche/ref du repo source pour l'article (vide = branche par defaut du repo -- necessaire si l'article n'est pas encore merge)"
+        required: false
       description:
         description: "Résumé court (optionnel, pour le flux RSS)"
         required: false
@@ -61,12 +64,25 @@ jobs:
           GH_TOKEN: ${{ secrets.ARTICLE_SOURCE_TOKEN }}
         run: |
           mkdir -p /tmp/article
+          url="https://api.github.com/repos/${{ inputs.article_repo }}/contents/${{ inputs.article_path }}"
+          if [ -n "${{ inputs.article_ref }}" ]; then
+            url="${url}?ref=${{ inputs.article_ref }}"
+          fi
           curl -sSL \
             -H "Authorization: Bearer ${GH_TOKEN}" \
             -H "Accept: application/vnd.github.raw" \
-            "https://api.github.com/repos/${{ inputs.article_repo }}/contents/${{ inputs.article_path }}" \
+            "$url" \
             -o /tmp/article/source.mdx
           test -s /tmp/article/source.mdx || (echo "Fichier article vide ou introuvable" && exit 1)
+          # Garde-fou : l'API GitHub renvoie un JSON d'erreur (jamais un .mdx) en cas de token
+          # invalide, de repo/chemin/ref incorrect -- sans cette verification, ce message
+          # d'erreur est silencieusement synthetise en audio a la place de l'article (constate
+          # le 19/07/2026, cf. docs/tts/1-contexte.md sur myselion4nonprofit).
+          if head -c1 /tmp/article/source.mdx | grep -q '{'; then
+            echo "Erreur : la reponse de l'API GitHub ressemble a du JSON d'erreur, pas a un fichier .mdx :"
+            cat /tmp/article/source.mdx
+            exit 1
+          fi
 
       - name: Générer l'épisode
         env:
