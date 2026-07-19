@@ -1,6 +1,6 @@
 {
   "month": "2026-07",
-  "totalCharacters": 223270,
+  "totalCharacters": 229475,
   "episodes": [
     {
       "uuid": "019f7216-74a1-7852-a2c0-d45593357b3b",
@@ -445,6 +445,12 @@
       "title": "IA en entreprise : pourquoi tant de sociétés belges n'exploitent qu'une fraction de sa puissance",
       "characters": 234,
       "generatedAt": "2026-07-19T18:05:17.451Z"
+    },
+    {
+      "uuid": "019f7b97-392d-7926-b001-818d71cece4c",
+      "title": "IA en entreprise : pourquoi tant de sociétés belges n'exploitent qu'une fraction de sa puissance",
+      "characters": 6205,
+      "generatedAt": "2026-07-19T18:15:36.337Z"
     }
   ]
 }
