@@ -1,6 +1,6 @@
 {
   "month": "2026-07",
-  "totalCharacters": 222830,
+  "totalCharacters": 223036,
   "episodes": [
     {
       "uuid": "019f7216-74a1-7852-a2c0-d45593357b3b",
@@ -433,6 +433,12 @@
       "title": "Die Ferme de la Planche in Gouvy: ein Familienspaziergang barfuß, zurück zur Natur",
       "characters": 2155,
       "generatedAt": "2026-07-18T13:07:55.870Z"
+    },
+    {
+      "uuid": "019f7b35-8ba9-7c84-a7fd-35f2914c2b40",
+      "title": "IA en entreprise : pourquoi tant de sociétés belges n'exploitent qu'une fraction de sa puissance",
+      "characters": 206,
+      "generatedAt": "2026-07-19T16:28:54.621Z"
     }
   ]
 }
