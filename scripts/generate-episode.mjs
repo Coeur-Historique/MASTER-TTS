@@ -51,8 +51,14 @@ async function main() {
     process.exit(1);
   }
 
+  // Bug corrige le 31/07/2026 (premier essai neerlandais) : avant ce correctif, --voice sans
+  // --language retombait toujours sur DEFAULT_VOICE.languageCode ('fr-FR'), donc toute voix
+  // non francaise (ex. nl-NL-Chirp3-HD-Zephyr) etait envoyee a l'API avec un languageCode
+  // francais -- rejetee en 400 par Cloud TTS ("doesn't match the voice's language code").
+  // Le languageCode se deduit desormais du nom de la voix (ex. 'nl-NL-Chirp3-HD-Zephyr' ->
+  // 'nl-NL'), sauf si --language est fourni explicitement pour un cas particulier.
   const voice = args.voice
-    ? { languageCode: args.language || DEFAULT_VOICE.languageCode, name: args.voice }
+    ? { languageCode: args.language || args.voice.split('-').slice(0, 2).join('-'), name: args.voice }
     : DEFAULT_VOICE;
 
   const raw = await readFile(args.file, 'utf-8');
