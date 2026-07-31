@@ -1,6 +1,6 @@
 {
   "month": "2026-07",
-  "totalCharacters": 233990,
+  "totalCharacters": 237839,
   "episodes": [
     {
       "uuid": "019f7216-74a1-7852-a2c0-d45593357b3b",
@@ -457,6 +457,12 @@
       "title": "Tijdsbeheer optimaliseren: de kracht van een gedeelde agenda",
       "characters": 4515,
       "generatedAt": "2026-07-31T11:24:25.921Z"
+    },
+    {
+      "uuid": "019fb7f0-20c5-788a-9b7a-3d1d3fab6b76",
+      "title": "Tijdsbeheer optimaliseren: de kracht van een gedeelde agenda",
+      "characters": 3849,
+      "generatedAt": "2026-07-31T11:29:55.588Z"
     }
   ]
 }
