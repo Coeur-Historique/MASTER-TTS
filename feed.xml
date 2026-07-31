@@ -2,10 +2,19 @@
 <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
   <channel>
     <title>Cœur Historique — Le Blog en Podcast</title>
-    <link>https://coeur-historique.be</link>
+    <link>https://www.charli.world</link>
     <description>Les articles du blog de l&apos;ASBL Cœur Historique, lus à voix haute.</description>
     <language>fr-be</language>
     <itunes:explicit>false</itunes:explicit>
+    <item>
+      <title>Tijdsbeheer optimaliseren: de kracht van een gedeelde agenda</title>
+      <description>Laat uw planning niet langer uw leven bepalen. Ontdek hoe een gedeelde agenda binnen het team voor meer efficiëntie zorgt.</description>
+      <link>https://www.charli.world/nl/blog/agenda-partage-notification-client</link>
+      <guid isPermaLink="false">019fb7eb-18a0-747c-addb-a0122ea161bd</guid>
+      <pubDate>Fri, 31 Jul 2026 11:24:25 GMT</pubDate>
+      <enclosure url="https://cdn.jsdelivr.net/gh/Coeur-Historique/MASTER-TTS@main/audio/019fb7eb-18a0-747c-addb-a0122ea161bd.mp3" length="1058253" type="audio/mpeg" />
+      <itunes:duration></itunes:duration>
+    </item>
     <item>
       <title>IA en entreprise : pourquoi tant de sociétés belges n&apos;exploitent qu&apos;une fraction de sa puissance</title>
       <description>La plupart des organisations belges réduisent l&apos;intelligence artificielle à de l&apos;automatisation classique — sans même disposer d&apos;une base de données suffisante pour en tirer parti.</description>
