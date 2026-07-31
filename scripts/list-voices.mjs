@@ -46,6 +46,6 @@ if (voices.length === 0) {
   console.log(`Aucune voix trouvée pour ${language}${args.type ? ` (filtre "${args.type}")` : ''}.`);
 } else {
   for (const v of voices) {
-    console.log(`${v.name}\t${v.ssmlGender}\t${v.naturalSampleRateHertz}Hz`);
+    console.log(`${v.name}\t${v.ssmlGender}\t${v.naturalSampleRateHertz}Hz\t${(v.languageCodes || []).join(',')}`);
   }
 }
