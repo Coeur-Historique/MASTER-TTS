@@ -1,6 +1,6 @@
 {
   "month": "2026-07",
-  "totalCharacters": 241870,
+  "totalCharacters": 245435,
   "episodes": [
     {
       "uuid": "019f7216-74a1-7852-a2c0-d45593357b3b",
@@ -469,6 +469,12 @@
       "title": "Optimiser la gestion du temps : la force d'un agenda partagé",
       "characters": 4031,
       "generatedAt": "2026-07-31T12:05:04.582Z"
+    },
+    {
+      "uuid": "019fb818-0aa8-7bf2-84f1-0e736cfae323",
+      "title": "Optimizing time management: the power of a shared calendar",
+      "characters": 3565,
+      "generatedAt": "2026-07-31T12:13:31.457Z"
     }
   ]
 }
